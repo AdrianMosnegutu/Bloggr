@@ -1,6 +1,7 @@
 import timeSince from "@/helpers/timeSince";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import TopicsList from "./TopicsList";
 
 interface Props {
   title: string;
@@ -29,7 +30,7 @@ export default function Post({
         >
           {timeSince(time)}
         </time>
-        <button className="aspect-square w-9 cursor-pointer rounded-sm transition-colors hover:bg-white/25">
+        <button className="aspect-square w-9 cursor-pointer rounded-sm transition-colors hover:bg-white/10">
           <FontAwesomeIcon icon={faEllipsisVertical} size="xl" />
         </button>
       </div>
@@ -39,11 +40,7 @@ export default function Post({
           <li key={index}>Test</li>
         ))}
       </ul>
-      <ul className={topics.length === 0 ? "hidden" : ""}>
-        {topics.map((topic, index) => (
-          <li key={index}>{topic}</li>
-        ))}
-      </ul>
+      <TopicsList topics={topics} />
       <ul>
         <div>
           <span>{likes}</span>
