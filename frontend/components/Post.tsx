@@ -1,7 +1,8 @@
 import timeSince from "@/helpers/timeSince";
-import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisVertical, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TopicsList from "./TopicsList";
+import PostInteraction from "./PostInteraction";
 
 interface Props {
   title: string;
@@ -21,7 +22,7 @@ export default function Post({
   likes,
 }: Props) {
   return (
-    <article className="bg-custom-gray flex flex-col gap-4 rounded-xl p-8">
+    <article className="bg-custom-gray flex flex-col gap-8 rounded-xl p-8">
       <div className="flex items-center">
         <h2 className="mr-auto text-3xl font-bold">{title}</h2>
         <time
@@ -42,9 +43,10 @@ export default function Post({
       </ul>
       <TopicsList topics={topics} />
       <ul>
-        <div>
-          <span>{likes}</span>
-        </div>
+        <PostInteraction
+          count={likes}
+          icon={<FontAwesomeIcon size="xl" icon={faHeart} />}
+        />
       </ul>
     </article>
   );
