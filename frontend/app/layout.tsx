@@ -21,7 +21,9 @@ export default function RootLayout({
     <>
       <Navigation />
       <html lang="en">
-        <body className={`${funnelSans.className} antialiased`}>
+        <body
+          className={`${funnelSans.className} antialiased`}
+        >
           {children}
         </body>
       </html>
