@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 interface Props {
   className?: string;
   onClick?: () => void;
+  submit?: boolean;
   variant: "primary" | "secondary";
   children: ReactNode;
 }
@@ -19,12 +20,14 @@ export default function Button({
   children,
   className,
   onClick,
+  submit,
   variant,
 }: Props) {
   const style = variant === "primary" ? PRIMARY_STYLE : SECONDARY_STYLE;
 
   return (
     <button
+      role={submit ? "submit" : "button"}
       onClick={onClick}
       className={`${className} ${COMMON_STYLES} ${style}`}
     >
