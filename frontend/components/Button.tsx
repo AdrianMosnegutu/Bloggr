@@ -11,10 +11,9 @@ interface Props {
 const COMMON_STYLES =
   "w-fit cursor-pointer rounded-xl p-5 pt-2 pb-2 font-bold ease-in-out";
 
-const PRIMARY_STYLE = "bg-primary transition-opacity hover:opacity-75";
+const PRIMARY_STYLE = `${COMMON_STYLES} bg-primary transition-opacity hover:opacity-75`;
 
-const SECONDARY_STYLE =
-  "hover:text-custom-gray border-2 transition-colors hover:bg-white";
+const SECONDARY_STYLE = `${COMMON_STYLES} hover:text-custom-gray border-2 transition-colors hover:bg-white`;
 
 export default function Button({
   children,
@@ -23,13 +22,11 @@ export default function Button({
   submit,
   variant,
 }: Props) {
-  const style = variant === "primary" ? PRIMARY_STYLE : SECONDARY_STYLE;
-
   return (
     <button
       role={submit ? "submit" : "button"}
       onClick={onClick}
-      className={`${className} ${COMMON_STYLES} ${style}`}
+      className={`${className} ${variant === "primary" ? PRIMARY_STYLE : SECONDARY_STYLE}`}
     >
       {children}
     </button>
