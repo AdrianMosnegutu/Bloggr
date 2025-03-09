@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import RadioButton from "../RadioButton";
-import CheckBoxButton from "../CheckBoxButton";
+import RadioButton from "../buttons/RadioButton";
+import CheckBoxButton from "../buttons/CheckBoxButton";
 
 export default function OrderPanel() {
   const [descending, setDescending] = useState<boolean>(false);

@@ -1,8 +1,8 @@
 "use client";
 
-import Button from "@/components/Button";
 import { useState } from "react";
 import SelectedTopicsList from "./SelectedTopicsList";
+import Button from "@/components/buttons/Button";
 
 export default function SearchPanel() {
   const [topic, setTopic] = useState<string>("");
