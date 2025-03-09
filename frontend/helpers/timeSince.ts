@@ -11,27 +11,32 @@ export default function timeSince(date: Date): string {
 
   let interval = seconds / 31536000; // Years
   if (interval > 1) {
-    return Math.floor(interval) + " years ago";
+    const years = Math.floor(interval);
+    return `${years} year${years > 1 ? "s" : ""} ago`;
   }
 
   interval = seconds / 2592000; // Months
   if (interval > 1) {
-    return Math.floor(interval) + " months ago";
+    const months = Math.floor(interval);
+    return `${months} month${months > 1 ? "s" : ""} ago`;
   }
 
   interval = seconds / 86400; // Days
   if (interval > 1) {
-    return Math.floor(interval) + " days ago";
+    const days = Math.floor(interval);
+    return `${days} day${days > 1 ? "s" : ""} ago`;
   }
 
   interval = seconds / 3600; // Hours
   if (interval > 1) {
-    return Math.floor(interval) + " hours ago";
+    const hours = Math.floor(interval);
+    return `${hours} hour${hours > 1 ? "s" : ""} ago`;
   }
 
   interval = seconds / 60; // Minutes
   if (interval > 1) {
-    return Math.floor(interval) + " minutes ago";
+    const minutes = Math.floor(interval);
+    return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
   }
 
   return Math.floor(seconds) + " seconds ago";
