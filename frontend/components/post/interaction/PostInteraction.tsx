@@ -1,7 +1,8 @@
+import formatNumber from "@/helpers/formatNumber";
 import { ReactNode } from "react";
 
 interface Props {
-  count: bigint;
+  count: number;
   icon: ReactNode;
 }
 
@@ -11,7 +12,7 @@ export default function PostInteraction({ count, icon }: Props) {
       <div className="transition-colors ease-in-out group-hover:text-red-500">
         {icon}
       </div>
-      <span>{count}</span>
+      <span>{formatNumber(count)}</span>
     </div>
   );
 }

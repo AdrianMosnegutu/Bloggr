@@ -10,7 +10,7 @@ export default function Home() {
           time={new Date(2025, 2, 7, 20, 25)}
           media={[]}
           topics={["topic1", "topic2", "topic3"]}
-          likes={BigInt(999)}
+          likes={12314}
         />
       </div>
     </main>

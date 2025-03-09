@@ -9,7 +9,7 @@ interface Props {
   time: Date;
   media: ImageData[];
   topics: string[];
-  likes: bigint;
+  likes: number;
 }
 
 export default function Post({

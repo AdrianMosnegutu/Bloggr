@@ -3,7 +3,7 @@ import PostInteraction from "./PostInteraction";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
-  likes: bigint;
+  likes: number;
 }
 
 export default function PostInteractionList({ likes }: Props) {
