@@ -1,16 +1,8 @@
+import { PostType } from "@/types/types";
 import MediaList from "../media/MediaList";
 import TopicsList from "../topic/TopicsList";
 import PostHeader from "./PostHeader";
 import PostInteractionList from "./interaction/PostInteractionList";
-
-interface Props {
-  title: string;
-  body: string;
-  time: Date;
-  media: ImageData[];
-  topics: string[];
-  likes: number;
-}
 
 export default function Post({
   title,
@@ -19,7 +11,7 @@ export default function Post({
   media,
   topics,
   likes,
-}: Props) {
+}: PostType) {
   return (
     <article className="bg-custom-gray flex flex-col gap-8 rounded-xl p-8">
       <PostHeader title={title} time={time} />
