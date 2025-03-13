@@ -1,4 +1,4 @@
-import capitalizeString from "@/helpers/capitalizeString";
+import capitalizeString from "@/utils/capitalizeString";
 import CheckBox from "./CheckBox";
 
 interface Props {

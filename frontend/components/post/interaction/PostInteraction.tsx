@@ -1,4 +1,4 @@
-import formatNumber from "@/helpers/formatNumber";
+import formatNumber from "@/utils/formatNumber";
 import { ReactNode } from "react";
 
 interface Props {

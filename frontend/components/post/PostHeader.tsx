@@ -1,4 +1,4 @@
-import timeSince from "@/helpers/timeSince";
+import timeSince from "@/utils/timeSince";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
