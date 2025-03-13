@@ -35,8 +35,8 @@ export default function SearchPanel() {
           title="Topic"
           type="text"
           placeholder="Search posts by topic..."
-          maxLength={20}
-          pattern="[0-9a-zA-Z_]+"
+          maxLength={30}
+          pattern="[0-9a-zA-Z.+- ]+"
           value={topic}
           required
           onChange={(e) => setTopic(e.target.value)}
