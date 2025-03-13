@@ -7,7 +7,7 @@ interface Props {
 
 export default function PostList({ posts }: Props) {
   return (
-    <ul className="flex w-3/4 flex-col gap-4">
+    <ul className="flex w-4xl flex-col gap-4">
       {posts.map((post, index) => (
         <li key={index}>
           <Post {...post} />
