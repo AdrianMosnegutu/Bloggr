@@ -3,6 +3,7 @@
 import { useState } from "react";
 import SelectedTopicsList from "./SelectedTopicsList";
 import Button from "@/components/buttons/Button";
+import Input from "@/components/form/Input";
 
 export default function SearchPanel() {
   const [topic, setTopic] = useState<string>("");
@@ -31,16 +32,12 @@ export default function SearchPanel() {
   return (
     <div className="bg-custom-gray flex flex-col gap-4 rounded-xl p-6">
       <form onSubmit={handleAddTopic}>
-        <input
-          title="Topic"
-          type="text"
+        <Input
           placeholder="Search posts by topic..."
-          maxLength={30}
-          pattern="[0-9a-zA-Z.+- ]+"
-          value={topic}
-          required
-          onChange={(e) => setTopic(e.target.value)}
-          className="w-full rounded-xl border border-gray-400 p-4 pt-2 pb-2"
+          variableState={[topic, setTopic]}
+          enforceMaxLength
+          maxLength={20}
+          className="rounded-xl p-4 pt-3 pb-3"
         />
       </form>
       {selectedTopics.length > 0 && (

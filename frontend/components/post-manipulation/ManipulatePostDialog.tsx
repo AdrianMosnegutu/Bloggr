@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import Button from "../buttons/Button";
 import SelectedTopicsList from "../sidebar/search-panel/SelectedTopicsList";
 import { topicRegex } from "@/utils/regex";
+import Input from "../form/Input";
+import TextArea from "../form/TextArea";
 
 interface Props {
   header: string;
@@ -31,8 +33,8 @@ export default function ManipulatePostDialog({
   handleDiscard,
   handleSubmit,
 }: Props) {
-  const [title, setTitle] = titleState;
-  const [body, setBody] = bodyState;
+  const title = titleState[0];
+  const body = bodyState[0];
   const [media, setMedia] = mediaState;
   const [topics, setTopics] = topicsState;
   const [currentTopic, setCurrentTopic] = currentTopicState;
@@ -94,50 +96,24 @@ export default function ManipulatePostDialog({
       >
         <h1 className="w-4xl text-4xl font-extrabold">{header}</h1>
         <div className="flex w-full flex-col gap-4">
-          <div className="flex items-center rounded-md border border-gray-400 text-3xl font-bold">
-            <input
-              className="h-full w-full rounded-md p-4 outline-none"
-              type="text"
-              placeholder="Title"
-              required
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <span
-              className={`m-4 text-base font-normal text-gray-400 ${title.length > MAX_TITLE_LENGTH && "text-red-400"}`}
-            >
-              {title.length}/{MAX_TITLE_LENGTH}
-            </span>
-          </div>
-          <div className="flex h-72 items-start rounded-md border border-gray-400">
-            <textarea
-              className="h-full w-full resize-none rounded-md p-4 outline-none"
-              placeholder="Tell us what's up..."
-              required
-              value={body}
-              onChange={(e) => setBody(e.target.value)}
-            />
-            <span
-              className={`m-4 text-base font-normal text-gray-400 ${body.length > MAX_BODY_LENGTH && "text-red-400"}`}
-            >
-              {body.length}/{MAX_BODY_LENGTH}
-            </span>
-          </div>
-          <div className="flex items-center rounded-md border border-gray-400">
-            <input
-              className="h-full w-full rounded-md p-4 outline-none"
-              type="text"
-              placeholder="Add topic..."
-              value={currentTopic}
-              onChange={(e) => setCurrentTopic(e.target.value)}
-              onKeyDown={handleAddTopic}
-            />
-            <span
-              className={`m-4 text-base font-normal text-gray-400 ${currentTopic.length > MAX_TOPIC_LENGTH && "text-red-400"}`}
-            >
-              {currentTopic.length}/{MAX_TOPIC_LENGTH}
-            </span>
-          </div>
+          <Input
+            placeholder="Title"
+            variableState={titleState}
+            maxLength={MAX_TITLE_LENGTH}
+            className="rounded-md p-4 text-3xl font-bold"
+          />
+          <TextArea
+            placeholder="Tell us what's on your mind..."
+            variableState={bodyState}
+            maxLength={MAX_BODY_LENGTH}
+          />
+          <Input
+            placeholder="Add topic..."
+            variableState={currentTopicState}
+            maxLength={MAX_TOPIC_LENGTH}
+            onKeyDown={handleAddTopic}
+            className="rounded-md p-4"
+          />
         </div>
         {media.length > 0 && <div></div>}
         {topics.length > 0 && (
