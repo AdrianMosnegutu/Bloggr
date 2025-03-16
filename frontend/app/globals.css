@@ -10,6 +10,29 @@
 @theme {
   --color-custom-gray: #2d2d2d;
   --color-primary: #f33838;
+
+  --animate-fade: fade 200ms ease-out;
+  --animate-scale: scale 200ms ease-out;
+
+  @keyframes fade {
+    from {
+      opacity: 0%;
+    }
+
+    to {
+      opacity: 100%;
+    }
+  }
+
+  @keyframes scale {
+    from {
+      scale: 0;
+    }
+
+    to {
+      scale: 1;
+    }
+  }
 }
 
 @theme inline {

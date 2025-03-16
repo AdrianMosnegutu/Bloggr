@@ -89,10 +89,10 @@ export default function ManipulatePostDialog({
   }
 
   return (
-    <div className="fixed top-20 z-30 flex h-screen w-screen items-center justify-center bg-black/25 backdrop-blur-xs">
+    <div className="animate-fade fixed top-20 z-30 flex h-screen w-screen items-center justify-center bg-black/25 backdrop-blur-xs">
       <form
         onSubmit={onSubmit}
-        className="bg-custom-gray flex flex-col gap-8 rounded-lg p-10"
+        className="bg-custom-gray animate-scale flex flex-col gap-8 rounded-lg p-10"
       >
         <h1 className="w-4xl text-4xl font-extrabold">{header}</h1>
         <div className="flex w-full flex-col gap-4">

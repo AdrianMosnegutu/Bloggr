@@ -35,7 +35,7 @@ export default function PostOptions({ id }: Props) {
         Edit
       </button>
       <button
-        className="flex cursor-pointer items-center gap-2 rounded-md p-2 pt-1 pb-1 text-red-400 transition-colors ease-out hover:bg-white/20"
+        className="flex cursor-pointer items-center gap-2 rounded-md p-2 pt-1 pb-1 text-red-500 transition-colors ease-out hover:bg-white/20"
         onClick={handleDelete}
       >
         <FontAwesomeIcon icon={faEraser} />
