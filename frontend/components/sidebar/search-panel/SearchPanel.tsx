@@ -46,9 +46,14 @@ export default function SearchPanel() {
           handleDeselectTopic={handleDeselectTopic}
         />
       )}
-      <Button variant="primary" onClick={handleSearch}>
-        Search
-      </Button>
+      <div className="flex w-full items-center gap-4">
+        <Button variant="secondary" onClick={() => setSelectedTopics([])}>
+          Clear
+        </Button>
+        <Button variant="primary" onClick={handleSearch}>
+          Search
+        </Button>
+      </div>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import {
   MAX_BODY_LENGTH,
   MAX_TITLE_LENGTH,
   MAX_TOPIC_LENGTH,
-} from "@/utils/consts";
+} from "@/utils/constants";
 import { useEffect } from "react";
 import Button from "../buttons/Button";
 import SelectedTopicsList from "../sidebar/search-panel/SelectedTopicsList";

@@ -1,4 +1,4 @@
-interface PostType {
+type PostType = {
   id: string;
   title: string;
   body: string;
@@ -6,6 +6,6 @@ interface PostType {
   media: ImageData[];
   topics: string[];
   likes: number;
-}
+};
 
 export type { PostType };
