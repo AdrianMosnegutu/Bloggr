@@ -1,8 +1,8 @@
-import timeSince from "@/utils/timeSince";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PostOptions from "./PostOptions";
 import { useState } from "react";
+import { timeSince } from "@/utils/helperFunctions";
 
 interface Props {
   id: string;

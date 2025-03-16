@@ -1,11 +1,37 @@
 /**
+ * Formats a number into a human-readable string with appropriate units (k for thousands, M for millions).
+ *
+ * @param num - The number to format.
+ * @returns A formatted string representing the number with the appropriate unit (e.g., "12k", "1.5M").
+ */
+function formatNumber(num: number): string {
+  if (num < 1000) {
+    return num.toString();
+  }
+
+  if (num < 1_000_000) {
+    const thousands = Math.floor(num / 1000);
+    const remainder = num % 1000;
+    const remainderStr =
+      remainder !== 0 ? `.${Math.floor(remainder / 100)}` : "";
+    return `${thousands}${remainderStr}k`;
+  }
+
+  const millions = Math.floor(num / 1_000_000);
+  const remainder = num % 1_000_000;
+  const remainderStr =
+    remainder !== 0 ? `.${Math.floor(remainder / 100_000)}` : "";
+  return `${millions}${remainderStr}M`;
+}
+
+/**
  * Calculates the time elapsed between a given date and the current time,
  * returning a human-readable string describing the duration (e.g., "2 years ago").
  *
  * @param date - The past date to compare with the current time.
  * @returns A string describing how long ago the date was.
  */
-export default function timeSince(date: Date): string {
+function timeSince(date: Date): string {
   const now = new Date();
   const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
 
@@ -41,3 +67,9 @@ export default function timeSince(date: Date): string {
 
   return Math.floor(seconds) + " seconds ago";
 }
+
+function capitalizeString(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+export { formatNumber, timeSince, capitalizeString };

@@ -1,4 +1,4 @@
-import capitalizeString from "@/utils/capitalizeString";
+import { capitalizeString } from "@/utils/helperFunctions";
 import CheckBox from "./CheckBox";
 
 interface Props {
@@ -6,7 +6,6 @@ interface Props {
   label: "likes" | "time";
   onChange: (which: "likes" | "time") => void;
 }
-
 
 export default function RadioButton({ checked, label, onChange }: Props) {
   return (
