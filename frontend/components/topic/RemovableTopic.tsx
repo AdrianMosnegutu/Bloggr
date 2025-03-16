@@ -11,6 +11,7 @@ interface Props {
 export default function RemovableTopic({ onTopicRemoved, children }: Props) {
   const removeTopicButton = (
     <button
+      type="button"
       onClick={onTopicRemoved}
       className="flex aspect-square h-5 cursor-pointer items-center justify-center rounded-sm transition-colors ease-in-out hover:bg-white/25"
     >

@@ -7,12 +7,10 @@ interface Props {
 
 export default function PostList({ posts }: Props) {
   return (
-    <ul className="flex w-4xl flex-col gap-4">
-      {posts.map((post, index) => (
-        <li key={index}>
-          <Post {...post} />
-        </li>
+    <div className="flex w-4xl flex-col gap-4">
+      {posts.map((post) => (
+        <Post key={post.id} {...post} />
       ))}
-    </ul>
+    </div>
   );
 }

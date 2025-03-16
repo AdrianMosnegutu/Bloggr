@@ -10,7 +10,7 @@ export default function SelectedTopicsList({
   handleDeselectTopic,
 }: Props) {
   return (
-    <ul className="flex flex-wrap gap-2">
+    <ul className="flex max-w-full flex-wrap gap-2">
       {selectedTopics.map((topic, index) => (
         <RemovableTopic
           key={index}

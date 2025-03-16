@@ -1,10 +1,11 @@
-import { PostType } from "@/types/types";
+import { PostType } from "@/utils/types";
 import MediaList from "../media/MediaList";
 import TopicsList from "../topic/TopicsList";
 import PostHeader from "./PostHeader";
 import PostInteractionList from "./interaction/PostInteractionList";
 
 export default function Post({
+  id,
   title,
   body,
   time,
@@ -14,8 +15,8 @@ export default function Post({
 }: PostType) {
   return (
     <article className="bg-custom-gray flex flex-col gap-8 rounded-xl p-8">
-      <PostHeader title={title} time={time} />
-      <p>{body}</p>
+      <PostHeader id={id} title={title} time={time} />
+      <p className="whitespace-pre-line">{body}</p>
       <MediaList media={media} />
       <TopicsList topics={topics} />
       <PostInteractionList likes={likes} />

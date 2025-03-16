@@ -1,4 +1,5 @@
 interface PostType {
+  id: string;
   title: string;
   body: string;
   time: Date;
