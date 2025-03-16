@@ -16,7 +16,7 @@ export default function Post({
   return (
     <article className="bg-custom-gray flex flex-col gap-8 rounded-xl p-8">
       <PostHeader id={id} title={title} time={time} />
-      <p className="whitespace-pre-line">{body}</p>
+      <p className="truncate whitespace-pre-line">{body}</p>
       <MediaList media={media} />
       <TopicsList topics={topics} />
       <PostInteractionList likes={likes} />

@@ -49,6 +49,7 @@ export default function CreatePostDialog() {
 
   return (
     <ManipulatePostDialog
+      header="Create Post"
       callToAction="Post"
       titleState={titleState}
       bodyState={bodyState}

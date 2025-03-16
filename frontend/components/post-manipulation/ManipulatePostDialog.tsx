@@ -9,6 +9,7 @@ import SelectedTopicsList from "../sidebar/search-panel/SelectedTopicsList";
 import { topicRegex } from "@/utils/regex";
 
 interface Props {
+  header: string;
   callToAction: string;
   titleState: [string, React.Dispatch<React.SetStateAction<string>>];
   bodyState: [string, React.Dispatch<React.SetStateAction<string>>];
@@ -20,6 +21,7 @@ interface Props {
 }
 
 export default function ManipulatePostDialog({
+  header,
   callToAction,
   titleState,
   bodyState,
@@ -64,7 +66,7 @@ export default function ManipulatePostDialog({
         onSubmit={handleSubmit}
         className="bg-custom-gray flex flex-col gap-8 rounded-lg p-10"
       >
-        <h1 className="w-4xl text-4xl font-extrabold">Create Post</h1>
+        <h1 className="w-4xl text-4xl font-extrabold">{header}</h1>
         <div className="flex w-full flex-col gap-4">
           <div className="flex items-center gap-4 rounded-md border border-gray-400 text-3xl font-bold">
             <input
