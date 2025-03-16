@@ -1,5 +1,7 @@
 import PostsContext from "@/context/PostsContext";
 import { PostType } from "@/utils/types";
+import { faEraser, faPen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 
 interface Props {
@@ -24,9 +26,21 @@ export default function PostOptions({ id }: Props) {
   }
 
   return (
-    <div className="absolute top-full right-full bg-gray-500">
-      <button onClick={handleEdit}>Edit</button>
-      <button onClick={handleDelete}>Delete</button>
+    <div className="absolute top-full right-1/4 flex flex-col items-start gap-1 rounded-md bg-[#4A4A4A] p-2">
+      <button
+        className="flex w-full cursor-pointer items-center gap-2 rounded-md p-2 pt-1 pb-1 transition-colors ease-out hover:bg-white/20"
+        onClick={handleEdit}
+      >
+        <FontAwesomeIcon icon={faPen} />
+        Edit
+      </button>
+      <button
+        className="flex cursor-pointer items-center gap-2 rounded-md p-2 pt-1 pb-1 text-red-400 transition-colors ease-out hover:bg-white/20"
+        onClick={handleDelete}
+      >
+        <FontAwesomeIcon icon={faEraser} />
+        Delete
+      </button>
     </div>
   );
 }

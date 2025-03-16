@@ -22,11 +22,9 @@ export default function EditPostDialog({ post }: Props) {
   const topicsState = useState<string[]>(post.topics);
   const currentTopicState = useState<string>("");
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    const title = titleState[0];
-    const body = bodyState[0];
+  function handleSubmit() {
+    const title = titleState[0].trim();
+    const body = bodyState[0].trim();
     const media = mediaState[0];
     const topics = topicsState[0];
 

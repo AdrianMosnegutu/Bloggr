@@ -18,9 +18,7 @@ export default function CreatePostDialog() {
   const topicsState = useState<string[]>([]);
   const currentTopicState = useState<string>("");
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
+  function handleSubmit() {
     const title = titleState[0];
     const body = bodyState[0];
     const media = mediaState[0];

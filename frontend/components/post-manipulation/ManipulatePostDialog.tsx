@@ -16,7 +16,7 @@ interface Props {
   currentTopicState: [string, React.Dispatch<React.SetStateAction<string>>];
   mediaState: [ImageData[], React.Dispatch<React.SetStateAction<ImageData[]>>];
   topicsState: [string[], React.Dispatch<React.SetStateAction<string[]>>];
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleSubmit: () => void;
   handleDiscard: () => void;
 }
 
@@ -44,13 +44,31 @@ export default function ManipulatePostDialog({
     };
   }, []);
 
+  function isTitleValid() {
+    const trimmedTitle = title.trim();
+    return trimmedTitle && trimmedTitle.length <= MAX_TITLE_LENGTH;
+  }
+
+  function isBodyValid() {
+    const trimmedBody = body.trim();
+    return trimmedBody && trimmedBody.length <= MAX_BODY_LENGTH;
+  }
+
+  function isTopicValid() {
+    const trimmedTopic = currentTopic.trim();
+    return (
+      trimmedTopic &&
+      trimmedTopic.length <= MAX_TOPIC_LENGTH &&
+      topicRegex.test(trimmedTopic)
+    );
+  }
+
   function handleAddTopic(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
       e.preventDefault();
-      const topic = currentTopic.trim();
 
-      if (topic && topicRegex.test(topic)) {
-        setTopics((prev) => [topic, ...prev]);
+      if (isTopicValid()) {
+        setTopics((prev) => [currentTopic.trim(), ...prev]);
         setCurrentTopic("");
       }
     }
@@ -60,50 +78,66 @@ export default function ManipulatePostDialog({
     setTopics((prev) => prev.filter((item) => item !== topic));
   }
 
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    if (isTitleValid() && isBodyValid()) {
+      handleSubmit();
+    }
+  }
+
   return (
     <div className="fixed top-20 z-30 flex h-screen w-screen items-center justify-center bg-black/25 backdrop-blur-xs">
       <form
-        onSubmit={handleSubmit}
+        onSubmit={onSubmit}
         className="bg-custom-gray flex flex-col gap-8 rounded-lg p-10"
       >
         <h1 className="w-4xl text-4xl font-extrabold">{header}</h1>
         <div className="flex w-full flex-col gap-4">
-          <div className="flex items-center gap-4 rounded-md border border-gray-400 text-3xl font-bold">
+          <div className="flex items-center rounded-md border border-gray-400 text-3xl font-bold">
             <input
-              className="w-full rounded-md p-4 outline-none"
+              className="h-full w-full rounded-md p-4 outline-none"
               type="text"
               placeholder="Title"
               required
-              maxLength={MAX_TITLE_LENGTH}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
-            <span className="m-4 text-base font-normal text-gray-400">
+            <span
+              className={`m-4 text-base font-normal text-gray-400 ${title.length > MAX_TITLE_LENGTH && "text-red-400"}`}
+            >
               {title.length}/{MAX_TITLE_LENGTH}
             </span>
           </div>
-          <div className="flex h-44 resize-none items-start rounded-md border border-gray-400">
+          <div className="flex h-72 items-start rounded-md border border-gray-400">
             <textarea
               className="h-full w-full resize-none rounded-md p-4 outline-none"
               placeholder="Tell us what's up..."
               required
-              maxLength={MAX_BODY_LENGTH}
               value={body}
               onChange={(e) => setBody(e.target.value)}
             />
-            <span className="m-4 text-base font-normal text-gray-400">
+            <span
+              className={`m-4 text-base font-normal text-gray-400 ${body.length > MAX_BODY_LENGTH && "text-red-400"}`}
+            >
               {body.length}/{MAX_BODY_LENGTH}
             </span>
           </div>
-          <input
-            className="rounded-md border border-gray-400 p-4"
-            type="text"
-            placeholder="Add topic..."
-            maxLength={MAX_TOPIC_LENGTH}
-            value={currentTopic}
-            onChange={(e) => setCurrentTopic(e.target.value)}
-            onKeyDown={handleAddTopic}
-          />
+          <div className="flex items-center rounded-md border border-gray-400">
+            <input
+              className="h-full w-full rounded-md p-4 outline-none"
+              type="text"
+              placeholder="Add topic..."
+              value={currentTopic}
+              onChange={(e) => setCurrentTopic(e.target.value)}
+              onKeyDown={handleAddTopic}
+            />
+            <span
+              className={`m-4 text-base font-normal text-gray-400 ${currentTopic.length > MAX_TOPIC_LENGTH && "text-red-400"}`}
+            >
+              {currentTopic.length}/{MAX_TOPIC_LENGTH}
+            </span>
+          </div>
         </div>
         {media.length > 0 && <div></div>}
         {topics.length > 0 && (
