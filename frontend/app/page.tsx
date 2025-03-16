@@ -17,23 +17,11 @@ export default function Home() {
   const [creatingPost, setCreatingPost] = useState<boolean>(false);
   const [editedPost, setEditedPost] = useState<PostType | null>(null);
 
-  function handleCancelCreatingPost() {
-    document.body.style.overflow = "auto";
-    setCreatingPost(false);
-  }
-
-  function handleCreatePost(post: PostType) {
-    setPosts((prev) => [post, ...prev]);
-    setCreatingPost(false);
-  }
-
-  function handleEditPost() {
-    setEditedPost(null);
-  }
-
   return (
     <main className="relative top-8 flex justify-center gap-4">
-      <PostsContext.Provider value={{ posts, setPosts, setEditedPost }}>
+      <PostsContext.Provider
+        value={{ posts, setPosts, setCreatingPost, setEditedPost }}
+      >
         <PostList
           posts={posts.map((post) => ({
             ...post,
@@ -42,16 +30,9 @@ export default function Home() {
         />
         <Sidebar setCreatingPost={setCreatingPost} />
 
-        {creatingPost && (
-          <CreatePostDialog
-            handleCreatePost={handleCreatePost}
-            handleCancelCreatingPost={handleCancelCreatingPost}
-          />
-        )}
+        {creatingPost && <CreatePostDialog />}
 
-        {editedPost && (
-          <EditPostDialog post={editedPost} handleEditPost={handleEditPost} />
-        )}
+        {editedPost && <EditPostDialog post={editedPost} />}
       </PostsContext.Provider>
     </main>
   );
