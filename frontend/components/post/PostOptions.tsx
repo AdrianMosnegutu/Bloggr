@@ -1,28 +1,18 @@
 import PostsContext from "@/context/PostsContext";
-import { PostType } from "@/utils/types";
+import { PostData } from "@/utils/types";
 import { faEraser, faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 
-interface Props {
-  id: string;
-}
-
-export default function PostOptions({ id }: Props) {
-  const context = useContext(PostsContext);
-
-  if (!context) {
-    throw new Error("AddPostButton must be used within a Sidebar");
-  }
-
-  const { posts, setPosts, setEditedPost } = context;
+export default function PostOptions(post: PostData) {
+  const { setPosts, setEditedPost } = useContext(PostsContext);
 
   function handleEdit() {
-    setEditedPost(posts.find((post) => post.id === id) as PostType);
+    setEditedPost(post);
   }
 
   function handleDelete() {
-    setPosts((prev) => prev.filter((post) => post.id !== id));
+    setPosts((prev) => prev.filter((item) => item.id !== post.id));
   }
 
   return (

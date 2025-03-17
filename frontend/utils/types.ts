@@ -1,4 +1,4 @@
-type PostType = {
+type PostData = {
   id: string;
   title: string;
   body: string;
@@ -8,4 +8,6 @@ type PostType = {
   likes: number;
 };
 
-export type { PostType };
+type PostSortKey = "likes" | "time";
+
+export type { PostData, PostSortKey };

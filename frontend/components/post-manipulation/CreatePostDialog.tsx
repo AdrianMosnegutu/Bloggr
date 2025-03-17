@@ -4,42 +4,28 @@ import { v4 } from "uuid";
 import PostsContext from "@/context/PostsContext";
 
 export default function CreatePostDialog() {
-  const context = useContext(PostsContext);
-
-  if (!context) {
-    throw new Error("AddPostButton must be used within a Sidebar");
-  }
-
-  const { setPosts, setCreatingPost } = context;
+  const { setPosts, setCreatingPost } = useContext(PostsContext);
 
   const titleState = useState<string>("");
   const bodyState = useState<string>("");
   const mediaState = useState<ImageData[]>([]);
-  const topicsState = useState<string[]>([]);
-  const currentTopicState = useState<string>("");
+  const selectedTopicsState = useState<string[]>([]);
+  const topicState = useState<string>("");
 
   function handleSubmit() {
-    const title = titleState[0];
-    const body = bodyState[0];
+    const id = v4();
+    const title = titleState[0].trim();
+    const body = bodyState[0].trim();
     const media = mediaState[0];
-    const topics = topicsState[0];
+    const topics = selectedTopicsState[0];
+    const time = new Date();
+    const likes = 0;
 
-    const trimmedTitle = title.trim();
-    const trimmedBody = body.trim();
-
-    if (!trimmedTitle || !trimmedBody) {
+    if (!title || !body) {
       return;
     }
 
-    const newPost = {
-      id: v4(),
-      title: trimmedTitle,
-      body: trimmedBody,
-      media,
-      topics,
-      time: new Date(),
-      likes: 0,
-    };
+    const newPost = { id, title, body, media, topics, time, likes };
 
     setPosts((prev) => [newPost, ...prev]);
     setCreatingPost(false);
@@ -47,13 +33,13 @@ export default function CreatePostDialog() {
 
   return (
     <ManipulatePostDialog
-      header="Create Post"
-      callToAction="Post"
+      dialogTitle="Create Post"
+      callToActionText="Post"
       titleState={titleState}
       bodyState={bodyState}
       mediaState={mediaState}
-      topicsState={topicsState}
-      currentTopicState={currentTopicState}
+      selectedTopicsState={selectedTopicsState}
+      topicState={topicState}
       handleDiscard={() => setCreatingPost(false)}
       handleSubmit={handleSubmit}
     />

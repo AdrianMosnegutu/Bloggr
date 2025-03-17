@@ -1,12 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PostInteraction from "./PostInteraction";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { PostData } from "@/utils/types";
 
-interface Props {
-  likes: number;
-}
-
-export default function PostInteractionList({ likes }: Props) {
+export default function PostInteractionList({ likes }: PostData) {
   return (
     <ul>
       <PostInteraction

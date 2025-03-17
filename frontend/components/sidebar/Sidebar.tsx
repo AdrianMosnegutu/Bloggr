@@ -5,13 +5,7 @@ import SearchPanel from "./search-panel/SearchPanel";
 import PostsContext from "@/context/PostsContext";
 
 export default function Sidebar() {
-  const context = useContext(PostsContext);
-
-  if (!context) {
-    throw new Error("AddPostButton must be used within a Sidebar");
-  }
-
-  const { setCreatingPost } = context;
+  const { setCreatingPost } = useContext(PostsContext);
 
   return (
     <div className="sticky top-0 flex w-sm flex-col gap-4">

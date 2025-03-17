@@ -11,33 +11,31 @@ import Input from "../form/Input";
 import TextArea from "../form/TextArea";
 
 interface Props {
-  header: string;
-  callToAction: string;
+  dialogTitle: string;
+  callToActionText: string;
   titleState: [string, React.Dispatch<React.SetStateAction<string>>];
   bodyState: [string, React.Dispatch<React.SetStateAction<string>>];
-  currentTopicState: [string, React.Dispatch<React.SetStateAction<string>>];
+  topicState: [string, React.Dispatch<React.SetStateAction<string>>];
   mediaState: [ImageData[], React.Dispatch<React.SetStateAction<ImageData[]>>];
-  topicsState: [string[], React.Dispatch<React.SetStateAction<string[]>>];
-  handleSubmit: () => void;
+  selectedTopicsState: [string[], React.Dispatch<React.SetStateAction<string[]>>];
   handleDiscard: () => void;
+  handleSubmit: () => void;
 }
 
 export default function ManipulatePostDialog({
-  header,
-  callToAction,
+  dialogTitle,
+  callToActionText,
   titleState,
   bodyState,
   mediaState,
-  topicsState,
-  currentTopicState,
+  selectedTopicsState,
+  topicState,
   handleDiscard,
   handleSubmit,
 }: Props) {
-  const title = titleState[0];
-  const body = bodyState[0];
   const [media, setMedia] = mediaState;
-  const [topics, setTopics] = topicsState;
-  const [currentTopic, setCurrentTopic] = currentTopicState;
+  const [selectedTopics, setSelectedTopics] = selectedTopicsState;
+  const [topic, setTopic] = topicState;
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -47,17 +45,17 @@ export default function ManipulatePostDialog({
   }, []);
 
   function isTitleValid() {
-    const trimmedTitle = title.trim();
+    const trimmedTitle = titleState[0].trim();
     return trimmedTitle && trimmedTitle.length <= MAX_TITLE_LENGTH;
   }
 
   function isBodyValid() {
-    const trimmedBody = body.trim();
+    const trimmedBody = bodyState[0].trim();
     return trimmedBody && trimmedBody.length <= MAX_BODY_LENGTH;
   }
 
   function isTopicValid() {
-    const trimmedTopic = currentTopic.trim();
+    const trimmedTopic = topic.trim();
     return (
       trimmedTopic &&
       trimmedTopic.length <= MAX_TOPIC_LENGTH &&
@@ -70,14 +68,14 @@ export default function ManipulatePostDialog({
       e.preventDefault();
 
       if (isTopicValid()) {
-        setTopics((prev) => [currentTopic.trim(), ...prev]);
-        setCurrentTopic("");
+        setSelectedTopics((prev) => [topic.trim(), ...prev]);
+        setTopic("");
       }
     }
   }
 
   function handleRemoveTopic(topic: string) {
-    setTopics((prev) => prev.filter((item) => item !== topic));
+    setSelectedTopics((prev) => prev.filter((item) => item !== topic));
   }
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -94,7 +92,7 @@ export default function ManipulatePostDialog({
         onSubmit={onSubmit}
         className="bg-custom-gray animate-scale flex flex-col gap-8 rounded-lg p-10"
       >
-        <h1 className="w-4xl text-4xl font-extrabold">{header}</h1>
+        <h1 className="w-4xl text-4xl font-extrabold">{dialogTitle}</h1>
         <div className="flex w-full flex-col gap-4">
           <Input
             placeholder="Title"
@@ -109,16 +107,16 @@ export default function ManipulatePostDialog({
           />
           <Input
             placeholder="Add topic..."
-            variableState={currentTopicState}
+            variableState={topicState}
             maxLength={MAX_TOPIC_LENGTH}
             onKeyDown={handleAddTopic}
             className="rounded-md p-4"
           />
         </div>
         {media.length > 0 && <div></div>}
-        {topics.length > 0 && (
+        {selectedTopics.length > 0 && (
           <SelectedTopicsList
-            selectedTopics={topics}
+            topics={selectedTopics}
             handleDeselectTopic={handleRemoveTopic}
           />
         )}
@@ -130,7 +128,7 @@ export default function ManipulatePostDialog({
             Discard
           </Button>
           <Button submit variant="primary">
-            {callToAction}
+            {callToActionText}
           </Button>
         </div>
       </form>

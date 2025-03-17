@@ -1,10 +1,11 @@
 import { capitalizeString } from "@/utils/helperFunctions";
 import CheckBox from "./CheckBox";
+import { PostSortKey } from "@/utils/types";
 
 interface Props {
   checked?: boolean;
-  label: "likes" | "time";
-  onChange: (which: "likes" | "time") => void;
+  label: PostSortKey;
+  onChange: (label: PostSortKey) => void;
 }
 
 export default function RadioButton({ checked, label, onChange }: Props) {

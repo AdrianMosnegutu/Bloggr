@@ -1,26 +1,21 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import RadioButton from "../buttons/RadioButton";
 import CheckBoxButton from "../buttons/CheckBoxButton";
 import PostsContext from "@/context/PostsContext";
+import { PostSortKey } from "@/utils/types";
 
 export default function OrderPanel() {
-  const context = useContext(PostsContext);
-
-  if (!context) {
-    throw new Error("AddPostButton must be used within a Sidebar");
-  }
-
-  const { setPosts } = context;
+  const { setPosts } = useContext(PostsContext);
 
   const [descending, setDescending] = useState<boolean>(false);
-  const [value, setValue] = useState<"likes" | "time">("time");
+  const [value, setValue] = useState<PostSortKey>("time");
 
-  function handlePick(which: "likes" | "time") {
-    setValue(which);
+  function handlePickCategory(sortKey: PostSortKey) {
+    setValue(sortKey);
 
     setPosts((prev) => {
       const result = prev.toSorted((a, b) =>
-        which === "time"
+        sortKey === "time"
           ? b.time.getTime() - a.time.getTime()
           : a.likes - b.likes,
       );
@@ -41,12 +36,12 @@ export default function OrderPanel() {
         <RadioButton
           checked={value === "time"}
           label="time"
-          onChange={handlePick}
+          onChange={handlePickCategory}
         />
         <RadioButton
           checked={value === "likes"}
           label="likes"
-          onChange={handlePick}
+          onChange={handlePickCategory}
         />
       </div>
       <CheckBoxButton

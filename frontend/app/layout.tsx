@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Funnel_Sans } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
-
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
+
 config.autoAddCss = false;
 
 const funnelSans = Funnel_Sans({
@@ -22,13 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      <Navigation />
-      <html lang="en">
-        <body className={`${funnelSans.className} mt-20 antialiased`}>
-          {children}
-        </body>
-      </html>
-    </>
+    <html lang="en">
+      <body className={`${funnelSans.className} antialiased`}>
+        <Navigation />
+        {children}
+      </body>
+    </html>
   );
 }
