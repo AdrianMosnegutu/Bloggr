@@ -47,7 +47,7 @@ export default function EditPostDialog({ post }: Props) {
   return (
     <ManipulatePostDialog
       header="Edit Post"
-      callToAction="Edit"
+      callToAction="Apply"
       titleState={titleState}
       bodyState={bodyState}
       mediaState={mediaState}

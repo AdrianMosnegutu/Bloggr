@@ -9,7 +9,7 @@ export default function SearchPanel() {
   const [topic, setTopic] = useState<string>("");
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
 
-  function handleAddTopic(e: React.FormEvent<HTMLFormElement>) {
+  function handleSelectTopic(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (
@@ -31,7 +31,7 @@ export default function SearchPanel() {
 
   return (
     <div className="bg-custom-gray flex flex-col gap-4 rounded-xl p-6">
-      <form onSubmit={handleAddTopic}>
+      <form onSubmit={handleSelectTopic}>
         <Input
           placeholder="Search posts by topic..."
           variableState={[topic, setTopic]}

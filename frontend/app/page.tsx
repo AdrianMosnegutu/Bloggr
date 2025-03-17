@@ -29,9 +29,7 @@ export default function Home() {
           }))}
         />
         <Sidebar setCreatingPost={setCreatingPost} />
-
         {creatingPost && <CreatePostDialog />}
-
         {editedPost && <EditPostDialog post={editedPost} />}
       </PostsContext.Provider>
     </main>

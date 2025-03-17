@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import RadioButton from "../buttons/RadioButton";
 import CheckBoxButton from "../buttons/CheckBoxButton";

@@ -89,7 +89,7 @@ export default function ManipulatePostDialog({
   }
 
   return (
-    <div className="animate-fade fixed top-20 z-30 flex h-screen w-screen items-center justify-center bg-black/25 backdrop-blur-xs">
+    <div className="animate-fade fixed top-20 z-30 flex h-screen w-screen items-center justify-center bg-black/30 backdrop-blur-sm">
       <form
         onSubmit={onSubmit}
         className="bg-custom-gray animate-scale flex flex-col gap-8 rounded-lg p-10"
@@ -100,7 +100,7 @@ export default function ManipulatePostDialog({
             placeholder="Title"
             variableState={titleState}
             maxLength={MAX_TITLE_LENGTH}
-            className="rounded-md p-4 text-3xl font-bold"
+            className="rounded-md p-4 text-2xl font-bold"
           />
           <TextArea
             placeholder="Tell us what's on your mind..."
