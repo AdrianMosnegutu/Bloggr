@@ -3,7 +3,7 @@
     "id": "ff2c12ab-ea88-40b3-866d-c2b6b98656af",
     "title": "The Future of AI in Software Development",
     "body": "Artificial intelligence is transforming the software industry, enabling developers to automate tasks, improve code quality, and accelerate deployment. With tools like GitHub Copilot and ChatGPT, AI-assisted coding is becoming the norm. However, challenges such as bias, security, and ethical concerns remain key considerations for the future.",
-    "time": 1741370700000,
+    "time": 1741570700000,
     "media": [],
     "topics": ["AI", "Software Development", "Automation"],
     "likes": 2387
@@ -12,7 +12,7 @@
     "id": "da03190a-de10-43ec-9b26-c757339abd4a",
     "title": "Mastering .NET for Full-Stack Development",
     "body": "The .NET framework has evolved into a powerful tool for building full-stack applications. With ASP.NET Core for the backend and Blazor or React for the frontend, developers can create robust and scalable applications. This post explores best practices, common pitfalls, and performance optimization strategies in .NET development.",
-    "time": 1741382200000,
+    "time": 1741182200000,
     "media": [],
     "topics": [".NET", "Full-Stack", "Web Development"],
     "likes": 3120
@@ -21,7 +21,7 @@
     "id": "c3f402f4-adc9-4dfb-b9e8-4fd7c14d1e18",
     "title": "How to Organize a Successful Hackathon",
     "body": "Hackathons are a great way to bring developers together to innovate and solve real-world problems. From choosing a theme and securing sponsors to handling logistics and judging, this guide covers everything you need to know to host a successful hackathon.",
-    "time": 1741393700000,
+    "time": 1641393700000,
     "media": [],
     "topics": ["Hackathon", "Event Management", "Programming"],
     "likes": 1894
@@ -30,7 +30,7 @@
     "id": "1973a482-8c81-43ce-bb04-67b296cabdb1",
     "title": "The Rise of Microservices Architecture",
     "body": "Microservices have revolutionized how modern applications are built, enabling scalability, flexibility, and improved fault tolerance. This post dives into the advantages, challenges, and best practices for designing a microservices-based system.",
-    "time": 1741405200000,
+    "time": 1741305200000,
     "media": [],
     "topics": ["Microservices", "Cloud Computing", "Software Architecture"],
     "likes": 2789
@@ -39,7 +39,7 @@
     "id": "4be773a9-1f98-4ed6-8b8d-aaf927a81f5a",
     "title": "Breaking Into Tech: Tips for Students",
     "body": "Getting your first job or internship in tech can be challenging. This guide provides actionable advice on building a strong portfolio, networking effectively, and preparing for coding interviews to land your dream job in the industry.",
-    "time": 1741416700000,
+    "time": 1741116700000,
     "media": [],
     "topics": ["Career", "Tech Industry", "Students"],
     "likes": 3421

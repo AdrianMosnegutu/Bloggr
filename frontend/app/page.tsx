@@ -11,7 +11,10 @@ import EditPostDialog from "@/components/post-manipulation/EditPostDialog";
 
 export default function Home() {
   const [posts, setPosts] = useState<PostType[]>(
-    mockPosts as unknown as PostType[],
+    (mockPosts as unknown as PostType[]).map((post) => ({
+      ...post,
+      time: new Date(post.time),
+    })),
   );
 
   const [creatingPost, setCreatingPost] = useState<boolean>(false);
@@ -22,12 +25,7 @@ export default function Home() {
       <PostsContext.Provider
         value={{ posts, setPosts, setCreatingPost, setEditedPost }}
       >
-        <PostList
-          posts={posts.map((post) => ({
-            ...post,
-            time: new Date(post.time),
-          }))}
-        />
+        <PostList posts={posts} />
         <Sidebar />
         {creatingPost && <CreatePostDialog />}
         {editedPost && <EditPostDialog post={editedPost} />}
