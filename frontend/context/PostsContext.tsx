@@ -1,13 +1,18 @@
-import { PostType } from "@/utils/types";
+import { PostData } from "@/utils/types";
 import React, { createContext } from "react";
 
 interface PostsContextType {
-  posts: PostType[];
-  setPosts: React.Dispatch<React.SetStateAction<PostType[]>>;
+  posts: PostData[];
+  setPosts: React.Dispatch<React.SetStateAction<PostData[]>>;
   setCreatingPost: React.Dispatch<React.SetStateAction<boolean>>;
-  setEditedPost: React.Dispatch<React.SetStateAction<PostType | null>>;
+  setEditedPost: React.Dispatch<React.SetStateAction<PostData | null>>;
 }
 
-const PostsContext = createContext<PostsContextType | null>(null);
+const PostsContext = createContext<PostsContextType>({
+  posts: [],
+  setPosts: () => { },
+  setCreatingPost: () => { },
+  setEditedPost: () => { }
+});
 
 export default PostsContext;

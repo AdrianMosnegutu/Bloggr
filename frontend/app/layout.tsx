@@ -22,13 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      <html lang="en">
-        <body className={`${funnelSans.className} antialiased`}>
-          <Navigation />
-          {children}
-        </body>
-      </html>
-    </>
+    <html lang="en">
+      <body className={`${funnelSans.className} antialiased`}>
+        <Navigation />
+        {children}
+      </body>
+    </html>
   );
 }

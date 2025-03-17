@@ -1,42 +1,29 @@
 import PostsContext from "@/context/PostsContext";
-import { PostType } from "@/utils/types";
+import { PostData } from "@/utils/types";
 import { useContext, useState } from "react";
 import ManipulatePostDialog from "./ManipulatePostDialog";
 
-interface Props {
-  post: PostType;
-}
-
-export default function EditPostDialog({ post }: Props) {
-  const context = useContext(PostsContext);
-
-  if (!context) {
-    throw new Error("AddPostButton must be used within a Sidebar");
-  }
-
-  const { setPosts, setEditedPost } = context;
+export default function EditPostDialog(post: PostData) {
+  const { setPosts, setEditedPost } = useContext(PostsContext);
 
   const titleState = useState<string>(post.title);
   const bodyState = useState<string>(post.body);
   const mediaState = useState<ImageData[]>(post.media);
-  const topicsState = useState<string[]>(post.topics);
-  const currentTopicState = useState<string>("");
+  const selectedTopicsState = useState<string[]>(post.topics);
+  const topicState = useState<string>("");
 
   function handleSubmit() {
     const title = titleState[0].trim();
     const body = bodyState[0].trim();
     const media = mediaState[0];
-    const topics = topicsState[0];
+    const topics = selectedTopicsState[0];
+    const time = new Date();
 
-    const newPost = {
-      id: post.id,
-      title,
-      body,
-      media,
-      topics,
-      likes: post.likes,
-      time: new Date(),
-    };
+    if (!title || !body) {
+      return;
+    }
+
+    const newPost = { ...post, title, body, media, topics, time };
 
     setPosts((prev) =>
       prev.map((item) => (item.id !== post.id ? item : newPost)),
@@ -46,13 +33,13 @@ export default function EditPostDialog({ post }: Props) {
 
   return (
     <ManipulatePostDialog
-      header="Edit Post"
-      callToAction="Apply"
+      dialogTitle="Edit Post"
+      callToActionText="Apply"
       titleState={titleState}
       bodyState={bodyState}
       mediaState={mediaState}
-      topicsState={topicsState}
-      currentTopicState={currentTopicState}
+      selectedTopicsState={selectedTopicsState}
+      topicState={topicState}
       handleDiscard={() => setEditedPost(null)}
       handleSubmit={handleSubmit}
     />

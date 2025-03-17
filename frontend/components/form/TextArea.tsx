@@ -1,13 +1,13 @@
 interface Props {
+  variableState: [string, React.Dispatch<React.SetStateAction<string>>];
   placeholder: string;
   maxLength: number;
-  variableState: [string, React.Dispatch<React.SetStateAction<string>>];
 }
 
 export default function TextArea({
+  variableState,
   placeholder,
   maxLength,
-  variableState,
 }: Props) {
   const [variable, setVariable] = variableState;
 

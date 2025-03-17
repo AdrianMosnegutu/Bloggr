@@ -1,19 +1,19 @@
 interface Props {
+  className?: string;
+  variableState: [string, React.Dispatch<React.SetStateAction<string>>];
   placeholder: string;
   maxLength?: number;
-  variableState: [string, React.Dispatch<React.SetStateAction<string>>];
-  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  className?: string;
   enforceMaxLength?: boolean;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 export default function Input({
+  className,
+  variableState,
   placeholder,
   maxLength,
-  variableState,
-  onKeyDown,
-  className,
   enforceMaxLength,
+  onKeyDown,
 }: Props) {
   const [variable, setVariable] = variableState;
 

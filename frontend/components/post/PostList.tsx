@@ -1,8 +1,8 @@
-import { PostType } from "@/utils/types";
+import { PostData } from "@/utils/types";
 import Post from "./Post";
 
 interface Props {
-  posts: PostType[];
+  posts: PostData[];
 }
 
 export default function PostList({ posts }: Props) {

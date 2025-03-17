@@ -3,22 +3,10 @@ import SelectedTopicsList from "./SelectedTopicsList";
 import Button from "@/components/buttons/Button";
 import Input from "@/components/form/Input";
 import PostsContext from "@/context/PostsContext";
-import mockPosts from "@/mock/mock-posts.json";
-import { PostType } from "@/utils/types";
+import mockPosts from "@/utils/mockPosts";
 
 export default function SearchPanel() {
-  const mock = (mockPosts as unknown as PostType[]).map((post) => ({
-    ...post,
-    time: new Date(post.time),
-  }));
-
-  const context = useContext(PostsContext);
-
-  if (!context) {
-    throw new Error("AddPostButton must be used within a Sidebar");
-  }
-
-  const { setPosts } = context;
+  const { setPosts } = useContext(PostsContext);
 
   const [topic, setTopic] = useState<string>("");
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
@@ -26,10 +14,11 @@ export default function SearchPanel() {
   function handleSelectTopic(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (
-      !topic ||
-      selectedTopics.some((selectedTopic) => selectedTopic === topic)
-    ) {
+    if (!topic) {
+      return;
+    }
+
+    if (selectedTopics.some((selectedTopic) => selectedTopic === topic)) {
       return;
     }
 
@@ -37,22 +26,22 @@ export default function SearchPanel() {
     setTopic("");
   }
 
-  function handleDeselectTopic(removedTopic: string) {
-    setSelectedTopics((prev) => prev.filter((topic) => topic !== removedTopic));
+  function handleDeselectTopic(deselectedTopic: string) {
+    setSelectedTopics((prev) => prev.filter((topic) => topic !== deselectedTopic));
   }
 
-  function handleClear() {
+  function handleClearTopics() {
     setSelectedTopics([]);
   }
 
-  function handleSearch() {
+  function handleFilterPosts() {
     if (selectedTopics.length == 0) {
-      setPosts(mock);
+      setPosts(mockPosts);
       return;
     }
 
     setPosts(
-      mock.filter((post) =>
+      mockPosts.filter((post) =>
         post.topics.some((t) =>
           selectedTopics
             .map((item) => item.toLowerCase())
@@ -75,16 +64,16 @@ export default function SearchPanel() {
       </form>
       {selectedTopics.length > 0 && (
         <SelectedTopicsList
-          selectedTopics={selectedTopics}
+          topics={selectedTopics}
           handleDeselectTopic={handleDeselectTopic}
         />
       )}
       <div className="flex w-full items-center gap-4">
-        <Button variant="secondary" onClick={handleClear}>
+        <Button variant="secondary" onClick={handleClearTopics}>
           Clear
         </Button>
-        <Button variant="primary" onClick={handleSearch}>
-          Search
+        <Button variant="primary" onClick={handleFilterPosts}>
+          Filter
         </Button>
       </div>
     </div>
