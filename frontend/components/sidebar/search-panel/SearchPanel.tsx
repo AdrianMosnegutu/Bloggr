@@ -7,6 +7,11 @@ import mockPosts from "@/mock/mock-posts.json";
 import { PostType } from "@/utils/types";
 
 export default function SearchPanel() {
+  const mock = (mockPosts as unknown as PostType[]).map((post) => ({
+    ...post,
+    time: new Date(post.time),
+  }));
+
   const context = useContext(PostsContext);
 
   if (!context) {
@@ -42,12 +47,12 @@ export default function SearchPanel() {
 
   function handleSearch() {
     if (selectedTopics.length == 0) {
-      setPosts(mockPosts as unknown as PostType[]);
+      setPosts(mock);
       return;
     }
 
     setPosts(
-      (mockPosts as unknown as PostType[]).filter((post) =>
+      mock.filter((post) =>
         post.topics.some((t) =>
           selectedTopics
             .map((item) => item.toLowerCase())

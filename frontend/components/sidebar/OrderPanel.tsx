@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import RadioButton from "../buttons/RadioButton";
 import CheckBoxButton from "../buttons/CheckBoxButton";
 import PostsContext from "@/context/PostsContext";
@@ -31,7 +31,6 @@ export default function OrderPanel() {
 
   function handleChangeOrder() {
     setDescending((prev) => !prev);
-
     setPosts((prev) => prev.toReversed());
   }
 
