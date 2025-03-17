@@ -21,7 +21,7 @@ export default function Home() {
   const [editedPost, setEditedPost] = useState<PostType | null>(null);
 
   return (
-    <main className="relative top-8 flex justify-center gap-4">
+    <main className="relative top-20 p-8 flex justify-center gap-4">
       <PostsContext.Provider
         value={{ posts, setPosts, setCreatingPost, setEditedPost }}
       >
