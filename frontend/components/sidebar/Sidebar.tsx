@@ -1,13 +1,18 @@
-import { Dispatch, SetStateAction } from "react";
+import { useContext } from "react";
 import Button from "../buttons/Button";
 import OrderPanel from "./OrderPanel";
 import SearchPanel from "./search-panel/SearchPanel";
+import PostsContext from "@/context/PostsContext";
 
-interface Props {
-  setCreatingPost: Dispatch<SetStateAction<boolean>>;
-}
+export default function Sidebar() {
+  const context = useContext(PostsContext);
 
-export default function Sidebar({ setCreatingPost }: Props) {
+  if (!context) {
+    throw new Error("AddPostButton must be used within a Sidebar");
+  }
+
+  const { setCreatingPost } = context;
+
   return (
     <div className="sticky top-0 flex w-sm flex-col gap-4">
       <SearchPanel />

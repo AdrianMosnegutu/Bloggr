@@ -1,11 +1,20 @@
-"use client";
-
-import { useState } from "react";
+import { useContext, useState } from "react";
 import SelectedTopicsList from "./SelectedTopicsList";
 import Button from "@/components/buttons/Button";
 import Input from "@/components/form/Input";
+import PostsContext from "@/context/PostsContext";
+import mockPosts from "@/mock/mock-posts.json";
+import { PostType } from "@/utils/types";
 
 export default function SearchPanel() {
+  const context = useContext(PostsContext);
+
+  if (!context) {
+    throw new Error("AddPostButton must be used within a Sidebar");
+  }
+
+  const { setPosts } = context;
+
   const [topic, setTopic] = useState<string>("");
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
 
@@ -27,7 +36,26 @@ export default function SearchPanel() {
     setSelectedTopics((prev) => prev.filter((topic) => topic !== removedTopic));
   }
 
-  function handleSearch() {}
+  function handleClear() {
+    setSelectedTopics([]);
+  }
+
+  function handleSearch() {
+    if (selectedTopics.length == 0) {
+      setPosts(mockPosts as unknown as PostType[]);
+      return;
+    }
+
+    setPosts(
+      (mockPosts as unknown as PostType[]).filter((post) =>
+        post.topics.some((t) =>
+          selectedTopics
+            .map((item) => item.toLowerCase())
+            .includes(t.toLowerCase()),
+        ),
+      ),
+    );
+  }
 
   return (
     <div className="bg-custom-gray flex flex-col gap-4 rounded-xl p-6">
@@ -47,7 +75,7 @@ export default function SearchPanel() {
         />
       )}
       <div className="flex w-full items-center gap-4">
-        <Button variant="secondary" onClick={() => setSelectedTopics([])}>
+        <Button variant="secondary" onClick={handleClear}>
           Clear
         </Button>
         <Button variant="primary" onClick={handleSearch}>

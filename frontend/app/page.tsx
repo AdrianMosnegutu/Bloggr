@@ -28,7 +28,7 @@ export default function Home() {
             time: new Date(post.time),
           }))}
         />
-        <Sidebar setCreatingPost={setCreatingPost} />
+        <Sidebar />
         {creatingPost && <CreatePostDialog />}
         {editedPost && <EditPostDialog post={editedPost} />}
       </PostsContext.Provider>
