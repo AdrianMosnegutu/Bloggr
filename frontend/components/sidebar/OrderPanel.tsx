@@ -30,7 +30,7 @@ export default function OrderPanel() {
   }
 
   return (
-    <form className="bg-custom-gray flex flex-col gap-4 rounded-xl p-6">
+    <form className="bg-custom-gray flex flex-col gap-4 rounded-md p-6">
       <span className="text-2xl font-bold">Order by:</span>
       <div className="flex items-center gap-8">
         <RadioButton

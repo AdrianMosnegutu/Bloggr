@@ -6,7 +6,7 @@ import PostInteractionList from "./interaction/PostInteractionList";
 
 export default function Post(post: PostData) {
   return (
-    <article className="bg-custom-gray flex flex-col gap-8 rounded-xl p-8">
+    <article className="bg-custom-gray flex flex-col gap-8 rounded-md p-8">
       <PostHeader {...post} />
       <p className="truncate whitespace-pre-line">{post.body}</p>
       <MediaList {...post} />

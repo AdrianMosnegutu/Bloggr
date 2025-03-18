@@ -27,7 +27,9 @@ export default function SearchPanel() {
   }
 
   function handleDeselectTopic(deselectedTopic: string) {
-    setSelectedTopics((prev) => prev.filter((topic) => topic !== deselectedTopic));
+    setSelectedTopics((prev) =>
+      prev.filter((topic) => topic !== deselectedTopic),
+    );
   }
 
   function handleClearTopics() {
@@ -52,7 +54,7 @@ export default function SearchPanel() {
   }
 
   return (
-    <div className="bg-custom-gray flex flex-col gap-4 rounded-xl p-6">
+    <div className="bg-custom-gray flex flex-col gap-4 rounded-md p-6">
       <form onSubmit={handleSelectTopic}>
         <Input
           placeholder="Search posts by topic..."
