@@ -17,7 +17,10 @@ interface Props {
   bodyState: [string, React.Dispatch<React.SetStateAction<string>>];
   topicState: [string, React.Dispatch<React.SetStateAction<string>>];
   mediaState: [ImageData[], React.Dispatch<React.SetStateAction<ImageData[]>>];
-  selectedTopicsState: [string[], React.Dispatch<React.SetStateAction<string[]>>];
+  selectedTopicsState: [
+    string[],
+    React.Dispatch<React.SetStateAction<string[]>>,
+  ];
   handleDiscard: () => void;
   handleSubmit: () => void;
 }
@@ -67,7 +70,7 @@ export default function ManipulatePostDialog({
     if (e.key === "Enter") {
       e.preventDefault();
 
-      if (isTopicValid()) {
+      if (isTopicValid() && selectedTopics.every((item) => item !== topic)) {
         setSelectedTopics((prev) => [topic.trim(), ...prev]);
         setTopic("");
       }
